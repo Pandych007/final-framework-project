@@ -56,3 +56,73 @@ body {
   gap: 15px;
   align-items: center;
 }
+/* _______________________________________________________________________________________________ */
+
+.container2 {
+  background: linear-gradient(90.7deg, #211c24 0.64%, #211c24 101%);
+  width: 100vw;
+  height: 632px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 160px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.container2Text {
+  max-width: 600px;
+}
+
+.container2Text .tagline {
+  font-size: 20px;
+  opacity: 0.6;
+  margin: 0 0 20px;
+}
+
+.container2Text h2 {
+  font-size: 64px;
+  font-weight: bold;
+  margin: 0 0 20px;
+}
+
+.container2Text .description {
+  font-style: italic;
+  font-size: 16px;
+  opacity: 0.8;
+  margin: 0 0 40px;
+}
+
+.buttonShop {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 12px 32px;
+  border-radius: 8px;
+}
+
+.buttonShop:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.container2Img img {
+  height: 500px;
+}
+
+/* ____________________________________________________________________ */
+
+.visionPro {
+  background-color: #353535;
+  width: 360px;
+  height: 272px;
+}
+
+.container3 {
+  width: 1440px;
+  height: 600px;
+}
+
+.right {
+  margin-left: 1500px;
+  margin-bottom: 500px;
+}
