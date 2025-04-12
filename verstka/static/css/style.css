@@ -58,9 +58,9 @@ body {
 }
 /* _______________________________________________________________________________________________ */
 
-.container2 {
-  background: linear-gradient(90.7deg, #211c24 0.64%, #211c24 101%);
-  width: 100vw;
+.textPhoto {
+  max-width: 1511px;
+  margin: auto;
   height: 632px;
   display: flex;
   justify-content: space-between;
@@ -68,6 +68,11 @@ body {
   padding: 0 160px;
   box-sizing: border-box;
   color: white;
+}
+
+.container2 {
+  background: linear-gradient(90.7deg, #211c24 0.64%, #211c24 101%);
+  width: 100%;
 }
 
 .container2Text {
@@ -110,19 +115,371 @@ body {
 }
 
 /* ____________________________________________________________________ */
-
-.visionPro {
-  background-color: #353535;
-  width: 360px;
-  height: 272px;
+.container3 {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  font-family: "Helvetica Neue", sans-serif;
+  height: 600px;
+  box-sizing: border-box;
 }
 
-.container3 {
-  width: 1440px;
-  height: 600px;
+.left {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .right {
-  margin-left: 1500px;
-  margin-bottom: 500px;
+  width: 40%;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PlayStation {
+  display: flex;
+  background-color: white;
+
+  align-items: center;
+  box-sizing: border-box;
+  height: 50%;
+}
+
+.PlayStation img {
+  height: 100%;
+  margin-right: 30px;
+}
+
+.PlaystationText {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.PlaystationText2 {
+  color: #888;
+  font-size: 14px;
+  margin-top: 10px;
+  max-width: 320px;
+}
+
+.bottom-row {
+  display: flex;
+  height: 50%;
+}
+
+.AppleMax,
+.visionPro {
+  width: 50%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+}
+
+.AppleMax {
+  background-color: #f1f1f1;
+}
+
+.AppleMax img {
+  height: 100px;
+  margin-right: 20px;
+}
+
+.AppleMaxText {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.AppleMaxText2 {
+  color: #666;
+  font-size: 14px;
+}
+
+.visionPro {
+  background-color: #2d2d2d;
+  color: white;
+}
+
+.visionPro img {
+  height: 100px;
+  margin-right: 20px;
+}
+
+.VisionProText {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.VisionProText2 {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.MacBook {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 40px 0 40px 40px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.MacBook img {
+  max-height: 100%;
+  max-width: 50%;
+  object-fit: contain;
+  margin-left: auto;
+}
+
+.MacbookText {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.MacbookText span {
+  font-weight: 600;
+}
+
+.MacbookText2 {
+  font-size: 14px;
+  color: #666;
+  margin: 20px 0;
+  max-width: 320px;
+}
+
+.MacBookButton {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: transparent;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.MacBookButton:hover {
+  background-color: #000;
+  color: #fff;
+}
+/* _________________________________________________________ */
+.container4 {
+  max-width: 1440px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.category-wrapper {
+  max-width: 1440px;
+  padding: 80px 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.category-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.category-header h2 {
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 500;
+  margin: 0;
+}
+
+.arrows {
+  display: flex;
+  gap: 16px;
+}
+
+.arrow {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.arrow:hover {
+  background-color: #e0e0e0;
+}
+
+.slider {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.slide {
+  width: 140px;
+  height: 140px;
+  border-radius: 16px;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.slide img {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
+}
+
+.slide p {
+  margin: 0;
+  font-style: italic;
+  font-size: 14px;
+  color: #000;
+}
+/* ________________________________________________________________________ */
+.container5 {
+  max-width: 1440px;
+  margin: auto;
+  padding: 40px 20px;
+  background-color: #fff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.product-tabs {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #888;
+  width: 1120px;
+  margin: auto;
+  padding-bottom: 25px;
+}
+
+.product-tabs .active-tab {
+  font-weight: bold;
+  color: #000;
+  text-decoration: underline;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  width: 1120px;
+  margin: auto;
+}
+
+.product-card {
+  position: relative;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.product-card .title {
+  font-size: 14px;
+  color: #000;
+  margin: 10px 0;
+  min-height: 40px;
+}
+
+.product-card .price {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.product-card button {
+  background: #000;
+  color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.product-card button:hover {
+  background: #333;
+}
+
+.heart-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 18px;
+  height: 18px;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* ________________________________________________________________________ */
+
+.container6 {
+  max-width: 1440px;
+  display: flex;
+  justify-content: center;
+}
+
+.Products {
+  width: 360px;
+}
+
+.ProductsText1 {
+  font-family: ABeeZee;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 33px;
+  line-height: 48px;
+  letter-spacing: 0%;
+}
+
+.ProductsText2 {
+  font-family: ABeeZee;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: rgba(144, 144, 144, 1);
+}
+
+.buttonProducts {
+  width: 188;
+  height: 56;
+  gap: 8px;
+  padding-top: 16px;
+  padding-right: 56px;
+  padding-bottom: 16px;
+  padding-left: 56px;
+  border-radius: 6px;
+  border-width: 1px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-color: transparent;
 }
