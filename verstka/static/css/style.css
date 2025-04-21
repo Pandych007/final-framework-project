@@ -645,7 +645,49 @@ body {
 
 .container7 {
   background: linear-gradient(100.23deg, #2e2e2e 42.36%, #000000 98.65%);
+  margin-top: 70px;
 }
+
+.container7Text h2 {
+  font-family: ABeeZee;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 72px;
+  line-height: 72px;
+  letter-spacing: -1%;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+.container7Text p {
+  font-family: Abel;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #787878;
+
+  margin: 0;
+}
+
+.container7Text button {
+  width: 188;
+  height: 56;
+  gap: 8px;
+  border-radius: 6px;
+  border-width: 1px;
+  padding-top: 16px;
+  padding-right: 56px;
+  padding-bottom: 16px;
+  padding-left: 56px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: white;
+  margin-top: 20px;
+}
+
 /* ___________________________________________________ */
 .footer {
   height: 340px;
@@ -720,5 +762,5 @@ body {
   width: 20px;
   height: 20px;
   display: block;
-  filter: brightness(0) invert(1); /* Делает тёмные иконки светлыми */
+  filter: brightness(0) invert(1);
 }
