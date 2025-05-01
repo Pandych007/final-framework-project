@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Избранное</title>
+    <title>Корзина</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,14 +17,13 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./static/css/style.css" />
-
-    <link rel="stylesheet" href="./static/css/favorite.css" />
+    <link rel="stylesheet" href="./static/css/Cart.css" />
   </head>
   <body>
     <div class="container">
       <header class="header">
         <div class="logo">
-          <img src="./static/img/Logo.png" alt="" />
+          <a href="./index.html"> <img src="./static/img/Logo.png" alt="" /></a>
         </div>
         <div class="search">
           <div class="searchContainer">
@@ -35,7 +34,9 @@
         <div class="icon">
           <ul class="list_icon">
             <li>
-              <img src="./static/img/basket.png" alt="." />
+              <a href="./Cart.html">
+                <img src="./static/img/basket.png" alt="."
+              /></a>
             </li>
             <li>
               <a href="./favorite.html"
@@ -47,34 +48,104 @@
       </header>
     </div>
 
-    <main class="favorites">
-      <h2 class="favorites__title">Favorite</h2>
+    <main class="cart">
+      <h2 class="cart__title">Shopping Cart</h2>
+      <div class="cart__container">
+        <div class="cart__items">
+          <!-- Item 1 -->
+          <div class="cart__item">
+            <img src="./static/img/" alt="iPhone" class="cart__item-img" />
+            <div class="cart__item-info">
+              <p class="cart__item-name">
+                Apple iPhone 14 Pro Max 128Gb Deep Purple
+              </p>
+              <p class="cart__item-code">#1234567891011</p>
+            </div>
+            <div class="cart__item-controls">
+              <button class="cart__btn">-</button>
+              <span>1</span>
+              <button class="cart__btn">+</button>
+            </div>
+            <div class="cart__item-price">$1399</div>
+            <button class="cart__remove">×</button>
+          </div>
 
-      <div class="favorites__list">
-        <div class="favorites__item">
-          <img
-            src="./static/img/AppleMaxCont5.png"
-            alt="AirPods Max Silver"
-            class="favorites__image"
-          />
-          <div class="favorites__info">
-            <p class="favorites__name">AirPods Max Silver</p>
-            <p class="favorites__id">#53459358345</p>
+          <!-- Item 2 -->
+          <div class="cart__item">
+            <img
+              src="./static/img/airpods.png"
+              alt="AirPods Max"
+              class="cart__item-img"
+            />
+            <div class="cart__item-info">
+              <p class="cart__item-name">AirPods Max Silver</p>
+              <p class="cart__item-code">#53498568435</p>
+            </div>
+            <div class="cart__item-controls">
+              <button class="cart__btn">-</button>
+              <span>1</span>
+              <button class="cart__btn">+</button>
+            </div>
+            <div class="cart__item-price">$549</div>
+            <button class="cart__remove">×</button>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="cart__item">
+            <img
+              src="./static/img/watch.png"
+              alt="Apple Watch"
+              class="cart__item-img"
+            />
+            <div class="cart__item-info">
+              <p class="cart__item-name">
+                Apple Watch Series 9 GPS 41mm Starlight Aluminium
+              </p>
+              <p class="cart__item-code">#58293234</p>
+            </div>
+            <div class="cart__item-controls">
+              <button class="cart__btn">-</button>
+              <span>1</span>
+              <button class="cart__btn">+</button>
+            </div>
+            <div class="cart__item-price">$399</div>
+            <button class="cart__remove">×</button>
           </div>
         </div>
 
-        <div class="favorites__item">
-          <img
-            src="./static/img/appleWatchCont5.png"
-            alt="Apple Watch Series 9 GPS"
-            class="favorites__image"
+        <!-- Order Summary -->
+        <div class="cart__summary">
+          <h3>Order Summary</h3>
+          <input
+            type="text"
+            placeholder="Discount code / Promo code"
+            class="cart__input"
           />
-          <div class="favorites__info">
-            <p class="favorites__name">
-              Apple Watch Series 9 GPS<br />41mm Starlight Aluminium
-            </p>
-            <p class="favorites__id">#63632324</p>
+          <input
+            type="text"
+            placeholder="Enter Card Number"
+            class="cart__input"
+          />
+          <button class="cart__apply-btn">Apply</button>
+          <div class="cart__totals">
+            <div class="cart__totals-row">
+              <span>Subtotal</span>
+              <span>$2347</span>
+            </div>
+            <div class="cart__totals-row">
+              <span>Estimated Tax</span>
+              <span>$50</span>
+            </div>
+            <div class="cart__totals-row">
+              <span>Estimated shipping & Handling</span>
+              <span>$29</span>
+            </div>
+            <div class="cart__totals-row cart__totals-total">
+              <strong>Total</strong>
+              <strong>$2426</strong>
+            </div>
           </div>
+          <button class="cart__checkout">Checkout</button>
         </div>
       </div>
     </main>
