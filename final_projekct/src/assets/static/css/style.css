@@ -628,9 +628,9 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: url(/verstka/static/img/image6.png),
-    url(/verstka/static/img/image18.png), url(/verstka/static/img/image19.png),
-    url(/verstka/static/img/image7.png), url(/verstka/static/img/image8.png);
+  background: url(@/assets/static/img/image6.png),
+    url(@/assets/static/img/image18.png), url(@/assets/static/img/image19.png),
+    url(@/assets/static/img/image7.png), url(@/assets/static/img/image8.png);
 
   background-repeat: no-repeat;
   background-position-x: 200px, 31px, 31px, right, right;
