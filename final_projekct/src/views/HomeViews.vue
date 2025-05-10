@@ -16,9 +16,7 @@
   </div>
 
   <div class="container3">
-    <!-- Левая часть -->
     <div class="left">
-      <!-- Верхний блок PlayStation -->
       <div class="PlayStation">
         <img src="@/assets/static/img/PlayStation.png" alt="PlayStation 5" />
         <div>
@@ -30,9 +28,7 @@
         </div>
       </div>
 
-      <!-- Нижняя строка: AppleMax + VisionPro -->
       <div class="bottom-row">
-        <!-- Apple AirPods Max -->
         <div class="AppleMax">
           <img src="@/assets/static/img/appleMax.png" alt="AirPods Max" />
           <div>
@@ -44,7 +40,6 @@
           </div>
         </div>
 
-        <!-- Vision Pro -->
         <div class="visionPro">
           <img src="@/assets/static/img/visonpro.png" alt="Vision Pro" />
           <div>
@@ -59,7 +54,6 @@
       </div>
     </div>
 
-    <!-- Правая часть: MacBook -->
     <div class="right">
       <div class="MacBook">
         <div>
@@ -121,82 +115,12 @@
     </div>
 
     <div class="product-grid">
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img src="@/assets/static/img/Iphone14proMaxCont5.png" alt="iPhone" />
-        <p class="title">
-          Apple iPhone 14 Pro Max 128GB Deep Purple (MQ9T3RX/A)
-        </p>
-        <p class="price">$900</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img src="@/assets/static/img/CameraCont5.png" alt="Camera" />
-        <p class="title">Blackmagic Pocket Cinema Camera 6k</p>
-        <p class="price">$2535</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img src="@/assets/static/img/appleWatchCont5.png" alt="Watch" />
-        <p class="title">
-          Apple Watch Series 9 GPS 41mm Starlight Aluminium Case
-        </p>
-        <p class="price">$399</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img src="@/assets/static/img/AppleMaxCont5.png" alt="AirPods" />
-        <p class="title">AirPods Max Silver</p>
-        <p class="price">$549</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon liked"></div>
-        <img
-          src="@/assets/static/img/GalaxyWatch6Cont5.png"
-          alt="Galaxy Watch"
-        />
-        <p class="title">Samsung Galaxy Watch6 Classic 47mm Black</p>
-        <p class="price">$369</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon red"></div>
-        <img
-          src="@/assets/static/img/samsungFoneCont5.png"
-          alt="Galaxy Z Fold5"
-        />
-        <p class="title">Galaxy Z Fold5 Unlocked | 256GB | Phantom Black</p>
-        <p class="price">$1799</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img
-          src="@/assets/static/img/GalaxyBudsFECont5.png"
-          alt="Galaxy Buds"
-        />
-        <p class="title">Galaxy Buds FE Graphite</p>
-        <p class="price">$99.99</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img src="@/assets/static/img/ipadCont5.png" alt="iPad" />
-        <p class="title">Apple iPad 9 10.2" 64GB Wi-Fi Silver (MK2L3J) 2021</p>
-        <p class="price">$398</p>
-        <button>Buy Now</button>
-      </div>
+      <ProductCart
+        v-for="product in products.slice(0, 8)"
+        :key="product.id"
+        :product="product"
+        @add-to-cart="cart.addItem(product)"
+      />
     </div>
   </div>
 
@@ -251,14 +175,6 @@
     <div class="product-grid">
       <div class="product-card">
         <div class="heart-icon"></div>
-        <img src="@/assets/static/img/AppleiPhone14Pro.png" alt="iPhone" />
-        <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-        <p class="price">$1437</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon"></div>
         <img src="@/assets/static/img/AppleMaxCont5.png" alt="Camera" />
         <p class="title">AirPods Max Silver</p>
         <p class="price">$549</p>
@@ -296,7 +212,35 @@
   </div>
 </template>
 
-<script setup></script>
+<script>
+import ProductCart from "@/components/ProductCart.vue";
+import axios from "axios";
+import { useCartStore } from "@/stors/cart";
+
+export default {
+  components: { ProductCart },
+  data() {
+    return {
+      products: [],
+      cart: useCartStore(),
+    };
+  },
+  async created() {
+    const response = await axios.get("http://localhost:1452/api/products/");
+    this.products = response.data;
+  },
+  methods: {
+    handleAddCart(product) {
+      console.log("Товар добавлен!", product);
+    },
+  },
+};
+/*
+import { ref } from "vue";
+
+
+const products = ref([]);*/
+</script>
 <style>
 @import "@/assets/static/css/style.css";
 </style>

@@ -15,9 +15,15 @@
       <div class="icon">
         <ul class="list_icon">
           <li>
-            <img src="@/assets/static/img/basket.png" alt="." />
+            <router-link to="/cart">
+              <img src="@/assets/static/img/basket.png" alt="." />
+            </router-link>
           </li>
-          <li><img src="@/assets/static/img/like.png" alt="." /></li>
+          <li>
+            <router-link to="/faforite">
+              <img src="@/assets/static/img/like.png" alt="."
+            /></router-link>
+          </li>
         </ul>
       </div>
     </header>
