@@ -6,12 +6,7 @@
           ><img src="@/assets/static/img/Logo.png" alt=""
         /></router-link>
       </div>
-      <div class="search">
-        <div class="searchContainer">
-          <img src="@/assets/static/img/Search.png" alt="" />
-          <input class="inputSearch" type="text" placeholder="search" />
-        </div>
-      </div>
+      <SerchHeader />
       <div class="icon">
         <ul class="list_icon">
           <li>
@@ -100,5 +95,7 @@
   </footer>
 </template>
 
-<script setup></script>
+<script setup>
+import SerchHeader from "./components/SerchHeader.vue";
+</script>
 <style></style>

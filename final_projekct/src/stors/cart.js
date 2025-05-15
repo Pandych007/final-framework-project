@@ -10,15 +10,26 @@ export const useCartStore = defineStore("cart", {
       if (existing) {
         existing.quantity++;
       } else {
-        this.item.push({ ...product, quantity: 1 });
+        this.items.push({ ...product, quantity: 1 });
+      }
+      alert("Товар добавлен!");
+    },
+
+    removeItem(id) {
+      this.items = this.items.filter((item) => item.id !== id);
+    },
+
+    updateQuantity(id, newQuantity) {
+      const item = this.items.find((item) => item.id === id);
+      if (item) {
+        item.quantity = newQuantity;
       }
     },
-    removeItem(id) {
-      this.items.filter((item) => item.id !== id);
-    },
-    getters: {
-      total: (state) =>
-        state.items.reduce((sum, item) => sum + item.price * item.quantity, 0),
-    },
+  },
+  getters: {
+    total: (state) =>
+      state.items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    itemCount: (state) =>
+      state.items.reduce((count, item) => count + item.quantity, 0),
   },
 });
