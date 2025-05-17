@@ -5,7 +5,11 @@
       :src="`http://localhost:1452/${product.images[0]}`"
       :alt="product.name"
     />
-    <p class="title">{{ product.name }}</p>
+    <p class="title">
+      <router-link :to="`/product/${product.id}`">
+        {{ product.name }}
+      </router-link>
+    </p>
     <p class="price">{{ product.price }}</p>
     <button @click="$emit('add-to-cart')">Buy Now</button>
   </div>

@@ -3,17 +3,17 @@
     <div class="gelerea">
       <div class="productGelerea">
         <div class="up">
-          <!-- <img
-              src="./static/img/Iphone14proMaxCont5.png"
-              class="active"
-              alt=""
-            /> -->
-          <!-- <img src="./static/img/Iphone14proMaxCont5.png" alt="" />
-            <img src="./static/img/Iphone14proMaxCont5.png" alt="" />
-            <img src="./static/img/Iphone14proMaxCont5.png" alt="" /> -->
+          <img
+            src="@/assets/static/img/Iphone14proMaxCont5.png"
+            class="active"
+            alt=""
+          />
+          <img src="@/assets/static/img/Iphone14proMaxCont5.png" alt="" />
+          <img src="@/assets/static/img/Iphone14proMaxCont5.png" alt="" />
+          <img src="@/assets/static/img/Iphone14proMaxCont5.png" alt="" />
         </div>
         <duv class="basic">
-          <!-- <img src="./static/img/Image (1).png" alt="" /> -->
+          <img src="@/assets/static/img/Image (1).png" alt="" />
         </duv>
       </div>
     </div>

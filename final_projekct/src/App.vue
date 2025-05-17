@@ -21,6 +21,11 @@
           </li>
         </ul>
       </div>
+      <div class="icon_mobile">
+        <a>
+          <img src="@/assets/static/img/Burger.png" alt="" />
+        </a>
+      </div>
     </header>
   </div>
 
@@ -98,4 +103,7 @@
 <script setup>
 import SerchHeader from "./components/SerchHeader.vue";
 </script>
-<style></style>
+<style>
+@import "@/assets/static/css/Mobile.css";
+@import "@/assets/static/css/app.css";
+</style>

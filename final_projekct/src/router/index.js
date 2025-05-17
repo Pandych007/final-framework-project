@@ -6,7 +6,7 @@ const routes = [
   { path: "/cotalog", component: () => import("@/views/CotalogViews.vue") },
   { path: "/favorite", component: () => import("@/views/FavoriteViews.vue") },
   {
-    path: "/produkt/:id",
+    path: "/product/:id",
     component: () => import("@/views/ProduktCartViews.vue"),
   },
 ];

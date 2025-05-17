@@ -86,7 +86,7 @@ const handleSearch = debounce(() => {
 
 const getImageUrl = (product) => {
   return product.images?.length
-    ? `http://localhost:1452/image/${product.images[0]}`
+    ? `http://localhost:1452/${product.images[0]}`
     : "default.jpg";
 };
 

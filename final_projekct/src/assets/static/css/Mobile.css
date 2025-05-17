@@ -1,0 +1,67 @@
+@media screen and (max-width: 500px) {
+  .search,
+  .icon {
+    display: none;
+  }
+  .container,
+  .header {
+    width: 100% !important;
+  }
+  .header {
+    justify-content: space-between;
+    margin: 10px;
+  }
+  .icon_mobile {
+    display: block !important;
+  }
+  .textPhoto {
+    flex-direction: column;
+    height: 743px;
+  }
+  .container2Text {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .container3,
+  .PlayStation,
+  .bottom-row,
+  .AppleMax,
+  .visionPro,
+  .right,
+  .MacBook {
+    flex-direction: column;
+  }
+  .left,
+  .AppleMax,
+  .visionPro,
+  .right,
+  .MacBook {
+    width: 100% !important;
+  }
+  .PlayStation,
+  .bottom-row,
+  .bottom-row {
+    height: auto;
+    text-align: center;
+  }
+  .PlayStation img {
+    margin: auto;
+    text-align: center;
+  }
+  .container4 {
+    width: 100%;
+  }
+  .MacBook img {
+    margin: auto;
+  }
+  .MacBook {
+    padding: 0 !important;
+  }
+  .container3 {
+    height: auto !important;
+  }
+  .MacBook,
+  .left {
+    flex-flow: column-reverse !important;
+  }
+}
