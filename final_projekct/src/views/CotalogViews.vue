@@ -1,177 +1,150 @@
 <template>
   <div class="catalog">
-    <div class="filtrLeft">
-      <ul>
-        <li>
-          <span class="filtr1"> Brand </span>
-          <div>
-            <div class="searchContainer">
-              <!-- <img
-                src="./static/img/Search.png"
-                class="iconSearchBrand"
-                alt=""
-              /> -->
-              <input
-                class="inputSearch inputSearchBrent"
-                type="text"
-                placeholder="search"
-              />
-            </div>
-            <ul class="leftFilterUl">
-              <li>
-                <input type="checkbox" id="Apple" />
-                <label for="Apple">Apple</label>
-                <label>110</label>
-              </li>
-              <li>
-                <input type="checkbox" id="Samsung " />
-                <label for="Samsung ">Samsung </label>
-                <label>125</label>
-              </li>
-              <li>
-                <input type="checkbox" id="Xiaomi" />
-                <label for="Xiaomi">Xiaomi</label>
-                <label>110</label>
-              </li>
-              <li>
-                <input type="checkbox" id="Poco" />
-                <label for="Poco">Poco</label>
-                <label>44</label>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <span class="filtr1"> Battery capacity </span>
-          <div>
-            <div class="searchContainer">
-              <!-- <img
-                src="./static/img/Search.png"
-                class="iconSearchBrand"
-                alt=""
-              /> -->
-              <input
-                class="inputSearch inputSearchBrent"
-                type="text"
-                placeholder="search"
-              />
-            </div>
-            <ul class="leftFilterUl">
-              <li>
-                <input type="checkbox" id="5000MH" />
-                <label for="5000MH">5000 MH</label>
-                <label>125</label>
-              </li>
-              <li>
-                <input type="checkbox" id="6000MH" />
-                <label for="4000MH">6000 MH</label>
-                <label>110</label>
-              </li>
-              <li>
-                <input type="checkbox" id="5500MH" />
-                <label for="4000MH">6000 MH</label>
-                <label>110</label>
-              </li>
-              <li>
-                <input type="checkbox" id="4000MH" />
-                <label for="4000MH">6000 MH</label>
-                <label>110</label>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <FilterSection @filter-changed="applyFilters" />
     <div class="catalogRight">
       <div class="textContainer5-2 containerTextProduckt">
         <h3>Discounts up to -50%</h3>
-        <div class="search2">
-          <select name="" id="searchSelekt">
-            <option value="по рейтингу" selected>по рейтингу</option>
-            <option value="по стоимости">по стоимости</option>
-            <option value="по дате доставки">по дате доставки</option>
-          </select>
-        </div>
+        <SortSelect @sort-changed="applySort" />
       </div>
       <div class="productCard2Catalog">
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
-
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
-
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
-
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
-
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
-
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
-
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
-
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
-
-        <div class="product-card product-card2">
-          <div class="heart-icon"></div>
-          <!-- <img src="./static/img/AppleiPhone14Pro.png" alt="iPhone" /> -->
-          <p class="title">Apple iPhone 14 Pro 512GB Gold (MQ233)</p>
-          <p class="price">$1437</p>
-          <button>Buy Now</button>
-        </div>
+        <ProductCard
+          v-for="product in paginatedProducts"
+          :key="product.id"
+          :product="product"
+          @add-to-cart="addToCart"
+        />
+      </div>
+      <div class="pagination">
+        <button @click="prevPage" :disabled="currentPage === 1">&lt;</button>
+        <button
+          v-for="page in totalPages"
+          :key="page"
+          @click="goToPage(page)"
+          :class="{ acive: page === currentPage }"
+        >
+          {{ page }}
+        </button>
+        <button @click="nextPage" :disabled="currentPage === totalPages">
+          &gt;
+        </button>
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script>
+import axios from "axios";
+import FilterSection from "../components/FilterSection.vue";
+import ProductCard from "../components/ProductCard.vue";
+import SortSelect from "../components/SortSelect.vue";
+
+export default {
+  name: "CotalogViews",
+  components: {
+    FilterSection,
+    ProductCard,
+    SortSelect,
+  },
+  data() {
+    return {
+      products: [],
+      filteredProductsAll: [],
+      currentPage: 1,
+      itemsPerPage: 12,
+      activeFilters: {},
+      sortOption: "rating",
+    };
+  },
+  computed: {
+    paginatedProducts() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.filteredProductsAll.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.filteredProductsAll.length / this.itemsPerPage);
+    },
+  },
+  async created() {
+    try {
+      const response = await axios.get("http://localhost:1452/api/products/");
+      this.products = response.data;
+      this.filterProduct();
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+  },
+  methods: {
+    applyFilters(filters) {
+      this.activeFilters = filters;
+      this.filterProduct();
+    },
+    applySort(option) {
+      this.sortOption = option;
+      this.filterProduct();
+    },
+    filterProduct() {
+      let result = [...this.products];
+
+      if (this.activeFilters.battery) {
+        result = result.filter((product) =>
+          this.activeFilters.battery.includes(String(product.batteryCapacity))
+        );
+      }
+      switch (this.sortOption) {
+        case "price":
+          result.sort((a, b) => a.price - b.price);
+          break;
+        case "delivery":
+          result.sort(
+            (a, b) => new Date(a.deliveryDate) - new Date(b.deliveryDate)
+          );
+          break;
+        case "rating":
+        default:
+          result.sort((a, b) => b.rating - a.rating);
+      }
+
+      this.filteredProductsAll = result;
+      this.currentPage = 1;
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    goToPage(page) {
+      this.currentPage = page;
+    },
+    addToCart(product) {
+      console.log("Added to cart", product);
+    },
+  },
+};
+</script>
 <style>
 @import "@/assets/static/css/style.css";
 @import "@/assets/static/css/cotalog.css";
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+.pagination button.acive {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
 </style>
