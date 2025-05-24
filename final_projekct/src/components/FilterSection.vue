@@ -1,41 +1,31 @@
 <template>
   <div class="filtrLeft">
     <ul>
-      <li>
-        <span class="filtr1"> Battery capacity </span>
+      <li v-for="filter in dynamicFilters" :key="filter.id">
+        <span class="filtr1">{{ filter.title }}</span>
         <div>
           <div class="searchContainer">
-            <!-- <img
-                src="./static/img/Search.png"
-                class="iconSearchBrand"
-                alt=""
-              /> -->
             <input
               class="inputSearch inputSearchBrent"
               type="text"
               placeholder="search"
+              v-model="filter.searchQuery"
+              @input="updateFilterOptions(filter)"
             />
           </div>
           <ul class="leftFilterUl">
-            <li>
-              <input type="checkbox" id="5000MH" />
-              <label for="5000MH">5000 MH</label>
-              <label>125</label>
-            </li>
-            <li>
-              <input type="checkbox" id="6000MH" />
-              <label for="4000MH">6000 MH</label>
-              <label>110</label>
-            </li>
-            <li>
-              <input type="checkbox" id="5500MH" />
-              <label for="4000MH">6000 MH</label>
-              <label>110</label>
-            </li>
-            <li>
-              <input type="checkbox" id="4000MH" />
-              <label for="4000MH">6000 MH</label>
-              <label>110</label>
+            <li v-for="option in filter.filteredOptions" :key="option.value">
+              <input
+                type="checkbox"
+                :id="`${filter.id}-${option.value}`"
+                :value="option.value"
+                v-model="filter.selected"
+                @change="applyFilters"
+              />
+              <label :for="`${filter.id}-${option.value}`">
+                {{ option.label }}
+              </label>
+              <span>({{ option.count }})</span>
             </li>
           </ul>
         </div>
@@ -47,33 +37,124 @@
 <script>
 export default {
   name: "FilterSection",
+  props: {
+    products: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      filters: [
+      dynamicFilters: [
         {
-          id: "battery",
-          title: "Battery capacity",
+          id: "brand",
+          title: "Brand",
+          field: "brand",
           searchQuery: "",
           selected: [],
-          options: [
-            { id: "5000", value: "5000", label: "5000", count: 125 },
-            { id: "6000", value: "6000", label: "6000", count: 110 },
-            { id: "5500", value: "5500", label: "5500", count: 111 },
-            { id: "4000", value: "4000", label: "4000", count: 112 },
-          ],
+          options: [],
+          filteredOptions: [],
+        },
+        {
+          id: "battery",
+          title: "Аккумулятор",
+          field: "characteristics",
+          characteristic: "Аккумулятор",
+          searchQuery: "",
+          selected: [],
+          options: [],
+          filteredOptions: [],
+        },
+        {
+          id: "weight",
+          title: "Вес",
+          field: "characteristics",
+          characteristic: "Вес",
+          searchQuery: "",
+          selected: [],
+          options: [],
+          filteredOptions: [],
+        },
+        {
+          id: "diagonal",
+          title: "Диагональ",
+          field: "characteristics",
+          characteristic: "Диагональ",
+          searchQuery: "",
+          selected: [],
+          options: [],
+          filteredOptions: [],
         },
       ],
     };
   },
+  watch: {
+    products: {
+      immediate: true,
+      handler(newVal) {
+        if (Array.isArray(newVal) && newVal.length) {
+          this.initFilters();
+        }
+      },
+    },
+  },
   methods: {
+    initFilters() {
+      if (!Array.isArray(this.products) || !this.products.length) return;
+
+      this.dynamicFilters.forEach((filter) => {
+        const valuesMap = new Map();
+
+        this.products.forEach((product) => {
+          let value;
+          if (filter.field === "brand") {
+            value = product.brand;
+          } else {
+            const char =
+              product.characteristics?.find(
+                (c) => c.characteristic === filter.characteristic
+              ) || {};
+            value = char.value;
+          }
+
+          if (value) {
+            valuesMap.set(value, (valuesMap.get(value) || 0) + 1);
+          }
+        });
+
+        filter.options = Array.from(valuesMap.entries())
+          .filter(([value]) => Boolean(value))
+          .map(([value, count]) => ({
+            value: String(value),
+            label: String(value),
+            count,
+          }))
+          .sort((a, b) => a.label.localeCompare(b.label));
+
+        filter.filteredOptions = filter.options;
+      });
+    },
+
+    updateFilterOptions(filter) {
+      const searchQuery = filter.searchQuery.toLowerCase().trim();
+      filter.filteredOptions = filter.options.filter((option) =>
+        option.label.toLowerCase().includes(searchQuery)
+      );
+    },
+
     applyFilters() {
-      const filters = {};
-      this.filters.forEach((filter) => {
-        if (filter.selected.length > 0) {
-          filters[filter.id] = filter.selected;
+      const activeFilters = {};
+      this.dynamicFilters.forEach((filter) => {
+        if (filter.selected.length) {
+          activeFilters[filter.id] = {
+            field: filter.field,
+            characteristic: filter.characteristic,
+            values: filter.selected,
+          };
         }
       });
-      this.$emit("filter-changed", filters);
+      this.$emit("filter-changed", activeFilters);
     },
   },
 };

@@ -7,7 +7,7 @@
         <p class="description">
           Created to change everything for the better. For everyone
         </p>
-        <button class="buttonShop">Shop Now</button>
+        <router-link to="/cotalog" class="buttonShop">Shop Now</router-link>
       </div>
       <div class="container2Img">
         <img src="@/assets/static/img/Iphone.png" alt="" />
@@ -62,7 +62,9 @@
             The new 15-inch MacBook Air makes room for more of what you love<br />
             with a spacious Liquid Retina display.
           </p>
-          <button class="MacBookButton">Shop Now</button>
+          <router-link to="/cotalog" class="MacBookButton"
+            >Shop Now</router-link
+          >
         </div>
         <img src="@/assets/static/img/MacBookPro14.png" alt="MacBook Air" />
       </div>
@@ -133,7 +135,7 @@
           iPad combines a magnificent 10.2-inch Retina display, br incredible
           performance, multitasking and ease of use.
         </p>
-        <button class="buttonProducts">Shop Now</button>
+        <router-link to="/cotalog" class="buttonProducts">Shop Now</router-link>
       </div>
 
       <div class="ipad">
@@ -143,7 +145,8 @@
           iPad combines a magnificent 10.2-inch Retina display, br incredible
           performance, multitasking and ease of use.
         </p>
-        <button class="ipadProducts">Shop Now</button>
+
+        <router-link to="/cotalog" class="ipadProducts">Shop Now</router-link>
       </div>
 
       <div class="SamsungPhone">
@@ -153,7 +156,9 @@
           iPad combines a magnificent 10.2-inch Retina display, br incredible
           performance, multitasking and ease of use.
         </p>
-        <button class="SamsungPhoneProducts">Shop Now</button>
+        <router-link to="/cotalog" class="macboockProducts"
+          >Shop Now</router-link
+        >
       </div>
 
       <div class="macboock">
@@ -163,7 +168,10 @@
           iPad combines a magnificent 10.2-inch Retina display, br incredible
           performance, multitasking and ease of use.
         </p>
-        <button class="macboockProducts">Shop Now</button>
+
+        <router-link to="/cotalog" class="macboockProducts"
+          >Shop Now</router-link
+        >
       </div>
     </div>
   </div>
@@ -206,7 +214,7 @@
       <div class="container7Text">
         <h2>Big Summer Sale</h2>
         <p>Commodo fames vitae vitae leo mauris in. Eu consequat.</p>
-        <button>Shop Now</button>
+        <router-link to="/cotalog" class="buttonShop">Shop Now</router-link>
       </div>
     </div>
   </div>

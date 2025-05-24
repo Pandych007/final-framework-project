@@ -4,7 +4,11 @@
       <img src="@/assets/static/img/like.png" alt="" />
     </div>
     <img :src="`http://localhost:1452/${product.images[0]}`" alt="iPhone" />
-    <p class="title">{{ product.name }}</p>
+    <p class="title">
+      <router-link :to="`/product/${product.id}`">{{
+        product.name
+      }}</router-link>
+    </p>
     <p class="price">${{ product.price }}</p>
     <button @click="addToCart">Buy Now</button>
   </div>
