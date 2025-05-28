@@ -14,26 +14,59 @@
   </div>
 </template>
 <script>
-export default {
-  name: "ProductCard",
+/*
+const props = defineProps({
+  product: {
+    type: Object,
+    required: true,
+  },
+});
+
+const favorityStore = useFaforitiesStore();
+const isFavorite = computed(() => favorityStore.isFavorite(props.product.id));
+
+const toggleFavorite = () => {
+  if (isFavorite.value) {
+    favorityStore.removeFromFavorities(props.product.id);
+  } else {
+    favorityStore.addToFavorities(props.product.id);
+  }
+};
+
+const addToCart = () => {
+  this.$emit("add-to-cart", this.product);
+};*/
+import { defineComponent, computed } from "vue";
+import { useFavoritesStore } from "@/stors/favorites";
+
+export default defineComponent({
   props: {
     product: {
       type: Object,
       required: true,
     },
   },
-  data() {
+  emits: ["add-to-cart"],
+  setup(props, { emit }) {
+    const favoritesStore = useFavoritesStore();
+
+    const isFavorite = computed(() =>
+      favoritesStore.isFavorite(props.product.id)
+    );
+
+    const toggleFavorite = () => {
+      if (isFavorite.value) {
+        favoritesStore.removeFromFavorites(props.product.id);
+      } else {
+        favoritesStore.addToFavorites(props.product);
+      }
+    };
+
     return {
-      isFavorite: false,
+      isFavorite,
+      toggleFavorite,
+      emit,
     };
   },
-  methods: {
-    toggleFavorite() {
-      this.isFavorite = !this.isFavorite;
-    },
-    addToCart() {
-      this.$emit("add-to-cart", this.product);
-    },
-  },
-};
+});
 </script>

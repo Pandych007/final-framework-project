@@ -15,7 +15,7 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/faforite">
+            <router-link to="/favorite">
               <img src="@/assets/static/img/like.png" alt="."
             /></router-link>
           </li>
