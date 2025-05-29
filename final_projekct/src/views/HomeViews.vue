@@ -181,31 +181,12 @@
       <h3>Discounts up to -50%</h3>
     </div>
     <div class="product-grid">
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img src="@/assets/static/img/AppleMaxCont5.png" alt="Camera" />
-        <p class="title">AirPods Max Silver</p>
-        <p class="price">$549</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img src="@/assets/static/img/appleWatchCont5.png" alt="Watch" />
-        <p class="title">
-          Apple Watch Series 9 GPS 41mm Starlight Aluminium Case
-        </p>
-        <p class="price">$399</p>
-        <button>Buy Now</button>
-      </div>
-
-      <div class="product-card">
-        <div class="heart-icon"></div>
-        <img src="@/assets/static/img/AppleiPhone14Pro1TB.png" alt="AirPods" />
-        <p class="title">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</p>
-        <p class="price">$1499</p>
-        <button>Buy Now</button>
-      </div>
+      <ProductCart
+        v-for="product in products.slice(0, 4)"
+        :key="product.id"
+        :product="product"
+        @add-to-cart="cart.addItem(product)"
+      />
     </div>
   </div>
 

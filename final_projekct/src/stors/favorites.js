@@ -1,27 +1,19 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 
-export const useFavoritesStore = defineStore("favorites", () => {
-  const favorites = ref([]);
+export const useFavoritesStore = defineStore("favorites", {
+  state: () => ({
+    items: [],
+  }),
+  actions: {
+    addItem(product) {
+      const existing = this.items.find((item) => item.id === product.id);
+      if (!existing) {
+        this.items.push({ ...product });
+      }
+    },
 
-  function addToFavorites(product) {
-    if (!favorites.value.some((item) => item.id === product.id)) {
-      favorites.value.push(product);
-    }
-  }
-
-  function removeFromFavorites(productId) {
-    favorites.value = favorites.value.filter((item) => item.id !== productId);
-  }
-
-  function isFavorite(productId) {
-    return favorites.value.some((item) => item.id === productId);
-  }
-
-  return {
-    favorites,
-    addToFavorites,
-    removeFromFavorites,
-    isFavorite,
-  };
+    removeItem(id) {
+      this.items = this.items.filter((item) => item.id !== id);
+    },
+  },
 });
