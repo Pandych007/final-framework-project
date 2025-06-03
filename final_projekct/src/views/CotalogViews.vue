@@ -13,7 +13,7 @@
             v-for="product in paginatedProducts"
             :key="product.id"
             :product="product"
-            @add-to-cart="addToCart"
+            @add-to-cart="cart.addItem(product)"
           />
         </div>
 
@@ -47,6 +47,7 @@ import axios from "axios";
 import FilterSection from "../components/FilterSection.vue";
 import ProductCard from "../components/ProductCard.vue";
 import SortSelect from "../components/SortSelect.vue";
+import { useCartStore } from "@/stors/cart";
 
 export default {
   name: "CatalogView",
@@ -63,6 +64,7 @@ export default {
       itemsPerPage: 12,
       activeFilters: {},
       sortOption: "rating",
+      cart: useCartStore(),
     };
   },
   computed: {

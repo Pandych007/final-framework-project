@@ -81,11 +81,16 @@
         </div>
       </div>
       <div class="slider">
-        <div class="slide">
+        <div
+          v-for="category in categories"
+          :key="category.id"
+          @click="selectCategory(category.id)"
+          class="slide"
+        >
           <img src="@/assets/static/img/Phones.png" alt="" />
-          <p>Phones</p>
+          <p>{{ category.name }}</p>
         </div>
-        <div class="slide">
+        <!--<div class="slide">
           <img src="@/assets/static/img/Smart Watches.png" alt="" />
           <p>Smart Watches</p>
         </div>
@@ -104,7 +109,7 @@
         <div class="slide">
           <img src="@/assets/static/img/Gaming.png" alt="" />
           <p>Gaming</p>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -211,11 +216,16 @@ export default {
   data() {
     return {
       products: [],
+      categories: [],
       cart: useCartStore(),
     };
   },
   async created() {
     const response = await axios.get("http://localhost:1452/api/products/");
+    const categories = await axios.get("http://localhost:1452/api/category/");
+    // const categories_data = categories.data;
+    this.categories = categories.data;
+
     this.products = response.data;
   },
   methods: {

@@ -114,7 +114,7 @@
         <p class="reviews">of {{ product.count_review }} reviews</p>
         <div class="stars">
           <img
-            v-for="n in 5"
+            v-for="n in 4"
             :key="n"
             :src="getStarImage(n)"
             alt="Star rating"
@@ -139,6 +139,8 @@
 import { ref, computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
+import { useFavoritesStore } from "@/stors/favorites";
+import { useCartStore } from "@/stors/cart";
 
 const route = useRoute();
 const product = ref(null);
@@ -172,11 +174,12 @@ const getCharacteristicName = (name) => {
 
 const getStarImage = (n) => {
   const rating = product.value?.rating || 0;
-  return rating >= n
-    ? "/static/img/Star4.png"
-    : rating >= n - 0.5
-    ? "/static/img/Star5.png"
-    : "/static/img/Star5.png";
+  const f = require("@/assets/static/img/Star4.png");
+  const f1 = require("@/assets/static/img/Star5.png");
+  const f2 = require("@/assets/static/img/Star0.png");
+  if (rating >= n) return f;
+  if (rating >= n - 0.5) return f1;
+  return f2;
 };
 
 const fetchProduct = async () => {
@@ -193,10 +196,15 @@ const fetchProduct = async () => {
 
 const addToWishlist = () => {
   console.log("Added to wishlist:", product.value);
+  const favoritesStore = useFavoritesStore();
+
+  favoritesStore.addItem(product.value);
 };
 
 const addToCart = () => {
   console.log("Added to cart:", product.value);
+  const cart = useCartStore();
+  cart.addItem(product.value);
 };
 
 onMounted(() => {

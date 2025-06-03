@@ -19,13 +19,12 @@
       }}</router-link>
     </p>
     <p class="price">${{ product.price }}</p>
-    <button @add-to-cart="cart.addItem(product)">Buy Now</button>
+    <button @click="$emit('add-to-cart')">Buy Now</button>
   </div>
 </template>
 <script>
 import { useFavoritesStore } from "@/stors/favorites";
 import { mapState } from "pinia";
-import { useCartStore } from "@/stors/cart";
 
 export default {
   name: "ProductCard",
@@ -35,11 +34,7 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      cart: useCartStore(),
-    };
-  },
+  emits: ["add-to-cart"],
   computed: {
     ...mapState(useFavoritesStore, ["items"]),
     isFavorite() {
