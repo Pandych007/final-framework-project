@@ -117,15 +117,6 @@ onUnmounted(() => {
   padding: 1rem;
 }
 
-/* .searchContainer {
-  display: flex;
-  align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 999px;
-  padding: 0.5rem 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-} */
-
 .searchContainer img {
   width: 20px;
   height: 20px;

@@ -44,9 +44,7 @@
             :key="index"
             class="characteristicItem"
           >
-            <div>
-              <!-- Иконка можно добавить позже -->
-            </div>
+            <div></div>
             <div>
               <span class="characteristiName">{{
                 getCharacteristicName(char.characteristic)
@@ -59,7 +57,6 @@
           </div>
         </div>
 
-        <!-- Описание -->
         <p>{{ productDescription }}</p>
 
         <!-- Кнопки -->
@@ -227,9 +224,7 @@ const addToWishlist = () => {
 };
 
 const addToCart = (product_new) => {
-  //console.log("Added to cart:", product.value);
   const cart = useCartStore();
-  // cart.addItem(product.value);
 
   cart.addItem(product_new);
   toast.value.show();
