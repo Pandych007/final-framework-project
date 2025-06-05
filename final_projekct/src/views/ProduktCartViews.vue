@@ -1,4 +1,5 @@
 <template>
+  <ToastNotification ref="toast" />
   <div v-if="product">
     <div class="productDedeil">
       <!-- Галерея изображений -->
@@ -64,7 +65,7 @@
         <!-- Кнопки -->
         <div class="buttons">
           <button class="wite" @click="addToWishlist">Add to Wishlist</button>
-          <button class="blak" @click="addToCart">Add to Cart</button>
+          <button class="blak" @click="addToCart(product)">Add to Cart</button>
         </div>
 
         <!-- Информация о доставке -->
@@ -144,7 +145,7 @@
           v-for="product in products.slice(0, 4)"
           :key="product.id"
           :product="product"
-          @add-to-cart="cart.addItem(product)"
+          @add-to-cart="addToCart(product)"
         />
       </div>
     </div>
@@ -158,6 +159,8 @@ import axios from "axios";
 import { useFavoritesStore } from "@/stors/favorites";
 import { useCartStore } from "@/stors/cart";
 import ProductCart from "@/components/ProductCart.vue";
+import ToastNotification from "@/components/ToastNotification.vue";
+const toast = ref(null);
 
 const route = useRoute();
 const product = ref(null);
@@ -223,10 +226,13 @@ const addToWishlist = () => {
   favoritesStore.addItem(product.value);
 };
 
-const addToCart = () => {
-  console.log("Added to cart:", product.value);
+const addToCart = (product_new) => {
+  //console.log("Added to cart:", product.value);
   const cart = useCartStore();
-  cart.addItem(product.value);
+  // cart.addItem(product.value);
+
+  cart.addItem(product_new);
+  toast.value.show();
 };
 
 onMounted(() => {
