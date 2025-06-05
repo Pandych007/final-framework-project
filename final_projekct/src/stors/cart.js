@@ -12,7 +12,6 @@ export const useCartStore = defineStore("cart", {
       } else {
         this.items.push({ ...product, quantity: 1 });
       }
-      alert("Товар добавлен!");
     },
 
     removeItem(id) {

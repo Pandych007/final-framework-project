@@ -1,6 +1,16 @@
 <template>
   <div class="product-card">
-    <div class="heart-icon"></div>
+    <div class="heart-icon" @click="toggleFavorite">
+      <img
+        :src="
+          isFavorite
+            ? require('@/assets/static/img/likeRed.png')
+            : require('@/assets/static/img/like.png')
+        "
+        alt=""
+        style="width: 32px !important"
+      />
+    </div>
     <img
       :src="`http://localhost:1452/${product.images[0]}`"
       :alt="product.name"
@@ -16,6 +26,8 @@
 </template>
 <script>
 import { defineComponent } from "vue";
+import { useFavoritesStore } from "@/stors/favorites";
+import { mapState } from "pinia";
 export default defineComponent({
   props: {
     product: {
@@ -28,6 +40,23 @@ export default defineComponent({
     return {
       emit,
     };
+  },
+  computed: {
+    ...mapState(useFavoritesStore, ["items"]),
+    isFavorite() {
+      return this.items.some((item) => item.id === this.product.id);
+    },
+  },
+  methods: {
+    toggleFavorite() {
+      const favoritesStore = useFavoritesStore();
+
+      if (this.isFavorite) {
+        favoritesStore.removeItem(this.product.id);
+      } else {
+        favoritesStore.addItem(this.product);
+      }
+    },
   },
 });
 </script>

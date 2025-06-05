@@ -1,4 +1,6 @@
 <template>
+  <ToastNotification ref="toast" />
+
   <div class="container2">
     <div class="textPhoto">
       <div class="container2Text">
@@ -84,32 +86,12 @@
         <div
           v-for="category in categories"
           :key="category.id"
-          @click="selectCategory(category.id)"
-          class="slide"
+          @click="selectCategory(category.name)"
+          class="slide slideCategory"
         >
-          <img src="@/assets/static/img/Phones.png" alt="" />
+          <img :src="getCategoryImage(category.id)" :alt="category.name" />
           <p>{{ category.name }}</p>
         </div>
-        <!--<div class="slide">
-          <img src="@/assets/static/img/Smart Watches.png" alt="" />
-          <p>Smart Watches</p>
-        </div>
-        <div class="slide">
-          <img src="@/assets/static/img/Cameras.png" alt="" />
-          <p>Cameras</p>
-        </div>
-        <div class="slide">
-          <img src="@/assets/static/img/Headphones.png" alt="" />
-          <p>Headphones</p>
-        </div>
-        <div class="slide">
-          <img src="@/assets/static/img/Computers.png" alt="" />
-          <p>Computers</p>
-        </div>
-        <div class="slide">
-          <img src="@/assets/static/img/Gaming.png" alt="" />
-          <p>Gaming</p>
-        </div>-->
       </div>
     </div>
   </div>
@@ -117,8 +99,14 @@
   <div class="container5">
     <div class="product-tabs">
       <span class="active-tab">New Arrival</span>
-      <span>Bestseller</span>
-      <span>Featured Products</span>
+
+      <span>
+        <router-link to="/cotalog">Bestseller</router-link>
+      </span>
+      <span></span>
+      <span>
+        <router-link to="/favorite">Featured Products</router-link>
+      </span>
     </div>
 
     <div class="product-grid">
@@ -126,7 +114,7 @@
         v-for="product in products.slice(0, 8)"
         :key="product.id"
         :product="product"
-        @add-to-cart="cart.addItem(product)"
+        @add-to-cart="addToCart(product)"
       />
     </div>
   </div>
@@ -174,7 +162,7 @@
           performance, multitasking and ease of use.
         </p>
 
-        <router-link to="/cotalog" class="macboockProducts"
+        <router-link to="/cotalog" class="macboockProducts macboockProducts_new"
           >Shop Now</router-link
         >
       </div>
@@ -200,6 +188,7 @@
       <div class="container7Text">
         <h2>Big Summer Sale</h2>
         <p>Commodo fames vitae vitae leo mauris in. Eu consequat.</p>
+        <br /><br />
         <router-link to="/cotalog" class="buttonShop">Shop Now</router-link>
       </div>
     </div>
@@ -210,35 +199,60 @@
 import ProductCart from "@/components/ProductCart.vue";
 import axios from "axios";
 import { useCartStore } from "@/stors/cart";
+import ToastNotification from "@/components/ToastNotification.vue";
+
+import phonesImg from "@/assets/static/img/Phones.png";
+import watchesImg from "@/assets/static/img/Smart Watches.png";
+import camerasImg from "@/assets/static/img/Cameras.png";
+import headphonesImg from "@/assets/static/img/Headphones.png";
+import computersImg from "@/assets/static/img/Computers.png";
+import gamingImg from "@/assets/static/img/Gaming.png";
 
 export default {
-  components: { ProductCart },
+  components: { ProductCart, ToastNotification },
   data() {
     return {
       products: [],
       categories: [],
       cart: useCartStore(),
+
+      categoryImages: {
+        1: headphonesImg,
+        2: phonesImg,
+        3: computersImg,
+        4: gamingImg,
+        5: watchesImg,
+        6: camerasImg,
+      },
     };
   },
   async created() {
     const response = await axios.get("http://localhost:1452/api/products/");
     const categories = await axios.get("http://localhost:1452/api/category/");
-    // const categories_data = categories.data;
+
     this.categories = categories.data;
 
     this.products = response.data;
   },
   methods: {
+    addToCart(product) {
+      this.cart.addItem(product);
+      this.$refs.toast.show();
+    },
     handleAddCart(product) {
       console.log("Товар добавлен!", product);
     },
+    getCategoryImage(categoryName) {
+      return this.categoryImages[categoryName];
+    },
+    selectCategory(categoryName) {
+      this.$router.push({
+        path: "/cotalog",
+        query: { categoryName: categoryName },
+      });
+    },
   },
 };
-/*
-import { ref } from "vue";
-
-
-const products = ref([]);*/
 </script>
 <style>
 @import "@/assets/static/css/style.css";

@@ -70,12 +70,23 @@
         <!-- Информация о доставке -->
         <div class="info">
           <div class="infoItem">
+            <div><img src="@/assets/static/img/delivery.png" alt="" /></div>
             <div>
               <span class="infoItemText1">Free Delivery</span>
-              <span class="infoItemText2">1-2 days</span>
+              <span class="infoItemText2">1-2 day </span>
             </div>
           </div>
+
           <div class="infoItem">
+            <div><img src="@/assets/static/img/delivery.png" alt="" /></div>
+            <div>
+              <span class="infoItemText1">Free Delivery</span>
+              <span class="infoItemText2">1-2 day </span>
+            </div>
+          </div>
+
+          <div class="infoItem">
+            <div><img src="@/assets/static/img/delivery.png" alt="" /></div>
             <div>
               <span class="infoItemText1">Warranty</span>
               <span class="infoItemText2">{{ product.guarantee }} months</span>
@@ -129,7 +140,12 @@
         <h3>Discounts up to -50%</h3>
       </div>
       <div class="product-grid">
-        <!-- Здесь можно добавить компонент для похожих товаров -->
+        <ProductCart
+          v-for="product in products.slice(0, 4)"
+          :key="product.id"
+          :product="product"
+          @add-to-cart="cart.addItem(product)"
+        />
       </div>
     </div>
   </div>
@@ -141,9 +157,11 @@ import { useRoute } from "vue-router";
 import axios from "axios";
 import { useFavoritesStore } from "@/stors/favorites";
 import { useCartStore } from "@/stors/cart";
+import ProductCart from "@/components/ProductCart.vue";
 
 const route = useRoute();
 const product = ref(null);
+let products = [];
 const mainImage = ref("");
 
 const mainCharacteristics = computed(() => {
@@ -187,6 +205,10 @@ const fetchProduct = async () => {
     const response = await axios.get(
       `http://localhost:1452/api/products/${route.params.id}`
     );
+    const response_products = await axios.get(
+      "http://localhost:1452/api/products/"
+    );
+    products = response_products.data;
     product.value = response.data;
     mainImage.value = product.value.images[0];
   } catch (error) {

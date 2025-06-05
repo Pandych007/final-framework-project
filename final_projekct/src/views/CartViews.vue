@@ -52,8 +52,8 @@
 </template>
 
 <script setup>
-import { useCartStore } from "@/stors/cart"; // Исправлена опечатка в "stores"
-import ProduktBaskets from "@/components/ProduktBaskets.vue"; // Добавлен импорт
+import { useCartStore } from "@/stors/cart";
+import ProduktBaskets from "@/components/ProduktBaskets.vue";
 
 const cart = useCartStore();
 </script>

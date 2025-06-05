@@ -1,10 +1,15 @@
 <template>
   <div class="container">
+    <ToastNotification ref="toast" />
+
     <div class="catalog">
       <FilterSection :products="products" @filter-changed="applyFilters" />
       <div class="catalogRight">
         <div class="textContainer5-2 containerTextProduckt">
-          <h3>Discounts up to -50%</h3>
+          <h3 v-if="currentCategoryName">
+            Категория: {{ currentCategoryName }}
+          </h3>
+          <h3 v-else>Discounts up to -50%</h3>
           <SortSelect @sort-changed="applySort" />
         </div>
 
@@ -13,7 +18,7 @@
             v-for="product in paginatedProducts"
             :key="product.id"
             :product="product"
-            @add-to-cart="cart.addItem(product)"
+            @add-to-cart="addToCart(product)"
           />
         </div>
 
@@ -48,6 +53,7 @@ import FilterSection from "../components/FilterSection.vue";
 import ProductCard from "../components/ProductCard.vue";
 import SortSelect from "../components/SortSelect.vue";
 import { useCartStore } from "@/stors/cart";
+import ToastNotification from "@/components/ToastNotification.vue";
 
 export default {
   name: "CatalogView",
@@ -55,6 +61,7 @@ export default {
     FilterSection,
     ProductCard,
     SortSelect,
+    ToastNotification,
   },
   data() {
     return {
@@ -65,6 +72,7 @@ export default {
       activeFilters: {},
       sortOption: "rating",
       cart: useCartStore(),
+      currentCategoryName: "",
     };
   },
   computed: {
@@ -79,16 +87,23 @@ export default {
   },
   async created() {
     try {
+      this.currentCategoryName = this.$route.query.categoryName || "";
+
       const response = await axios.get("http://localhost:1452/api/products/");
       this.products = Array.isArray(response.data) ? response.data : [];
-      this.filteredProductsAll = [...this.products];
+
+      this.filterProducts();
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Error:", error);
       this.products = [];
       this.filteredProductsAll = [];
     }
   },
   methods: {
+    addToCart(product) {
+      this.cart.addItem(product);
+      this.$refs.toast.show();
+    },
     applyFilters(filters) {
       this.activeFilters = filters;
       this.filterProducts();
@@ -101,6 +116,15 @@ export default {
 
     filterProducts() {
       let result = [...this.products];
+
+      if (this.currentCategoryName) {
+        result = result.filter(
+          (product) =>
+            product.category &&
+            product.category.toLowerCase() ===
+              this.currentCategoryName.toLowerCase()
+        );
+      }
 
       Object.values(this.activeFilters).forEach((filterConfig) => {
         result = result.filter((product) => {
@@ -149,13 +173,16 @@ export default {
     goToPage(page) {
       if (page >= 1 && page <= this.totalPages) this.currentPage = page;
     },
-
-    addToCart(product) {
-      console.log("Added to cart:", product);
+  },
+  watch: {
+    "$route.query.categoryName"(newCategoryName) {
+      this.currentCategoryName = newCategoryName || "";
+      this.filterProducts();
     },
   },
 };
 </script>
+
 <style>
 @import "@/assets/static/css/style.css";
 @import "@/assets/static/css/cotalog.css";
@@ -164,6 +191,8 @@ export default {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
 }
 .pagination button {
   padding: 6px 12px;
@@ -171,9 +200,15 @@ export default {
   background-color: white;
   cursor: pointer;
 }
-.pagination button.acive {
+.pagination button.active {
   background-color: #007bff;
   color: white;
   font-weight: bold;
+}
+.no-results {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
 }
 </style>
